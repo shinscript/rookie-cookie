@@ -1,7 +1,18 @@
-import React, { useState } from 'react';
-import { fetchImages } from "../api/unSplash";
+/**
+ * ************************************
+ *
+ * @module ClassForm
+ * @description Form Child Component for the Modal Component that has an initialState for 
+ *              input values to fill. Unsplash API is also used here to search through images
+ *              and select and set image urls;
+ *
+ * ************************************
+ */
 
-const ClassForm = ({ addClasses }) => {
+import React, { useState } from 'react';
+import { fetchImages } from "../api/unsplash";
+
+const ClassForm = ({ hide, addClasses }) => {
   const initialFormState = {
     id: null,
     title: "",
@@ -17,17 +28,19 @@ const ClassForm = ({ addClasses }) => {
   const [ selectedImg, setSelectedImg ] = useState(null);
   const times = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, '60+'];
 
+  //On change handler for filling classItems;
   const handleOnChange = event => {
     const { name, value } = event.target;
-    console.log(name, value)
     setClassItem({ ...classItem, [name]: value });
   };
 
+  //Search Image handler to set the featuredImage as the url found from the result of calling the API
   const searchImage = () => {
     fetchImages(classItem.featureImage)
       .then(res => setSearched(res.results));
   };
 
+  //Setting clicked image as main image to use when user creates a new card.
   const chosenImage = event => {
     setSelectedImg(event.target.src);
   };
@@ -46,6 +59,7 @@ const ClassForm = ({ addClasses }) => {
           return alert("Enter all fields below!");
         addClasses({ ...classItem, featureImage: selectedImg });
         setClassItem(initialFormState);
+        hide();
     }}>
       <input
         type="text"

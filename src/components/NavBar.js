@@ -1,8 +1,21 @@
+/**
+ * ************************************
+ *
+ * @module NavBar
+ * @description Parent Component that renders the navigation bar + a Modal Component w/ it's functionality;
+ *
+ * ************************************
+ */
+
+
 import React from 'react';
 import styled from 'styled-components';
 import ClassModal from './ClassModal';
+import useModal from '../custom-hooks/useModal';
 
-const NavBar = ({ toggle, isShowing, addClasses }) => {
+const NavBar = ({ addClasses }) => {
+  const { isShowing, toggle } = useModal();
+
   return (
     <Header>
       <HeaderMenu>
@@ -20,6 +33,8 @@ const NavBar = ({ toggle, isShowing, addClasses }) => {
   )
 }
 export default NavBar
+
+//NavBar STYLED COMPONENTS :
 
 NavBar.displayName = 'NavBar'
 

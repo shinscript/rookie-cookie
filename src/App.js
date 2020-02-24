@@ -2,11 +2,9 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import classList from './classes';
 import NavBar from './components/NavBar';
-import useModal from './custom-hooks/useModal';
 
 const App = () => {
   const [ classes, setClasses ] = useState([]);
-  const { isShowing, toggle } = useModal();
 
   useEffect(() => {
     setClasses(classList)
@@ -23,7 +21,7 @@ const App = () => {
 
   return (
     <Wrapper>
-      <NavBar isShowing={isShowing} toggle={toggle} addClasses={addClasses}/>
+      <NavBar addClasses={addClasses}/>
       <h1>Welcome to RookieCookie!</h1>
       <Cards>{classes.map(klass => <ClassCard deleteClasses={deleteClasses} key={klass.id} content={klass}/>)}</Cards>
     </Wrapper>
@@ -46,6 +44,8 @@ const ClassCard = ({ content, deleteClasses }) => (
     </DeleteButton>
   </div>
 )
+
+//APP & CLASSCARD STYLED COMPONENTS :
 
 const Wrapper = styled.div `
   text-align: center;

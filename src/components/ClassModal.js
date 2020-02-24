@@ -1,8 +1,18 @@
+/**
+ * ************************************
+ *
+ * @module ClassModal
+ * @description Modal Component that uses react's createPortal to render Components over
+ *              the main root DOM heirarchy without losing context of previously rendered
+ *              Components;
+ *
+ * ************************************
+ */
+
 import React, { Fragment } from 'react';
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 import ClassForm from './ClassForm';
-
 
 const ClassModal = ({ isShowing, hide, addClasses }) => isShowing ? createPortal(
   <Fragment>
@@ -15,11 +25,13 @@ const ClassModal = ({ isShowing, hide, addClasses }) => isShowing ? createPortal
           </CloseButton>
         </ModalHeader>
         <h1>Create Your Class</h1>
-        <ClassForm addClasses={addClasses} />
+        <ClassForm hide={hide} addClasses={addClasses} />
       </Modal>
     </ModalWrapper>
   </Fragment>, document.body
 ) : null;
+
+//MODAL STYLED COMPONENTS :
 
 const ModalOverlay = styled.div`
   position: fixed;
