@@ -10,6 +10,7 @@ These steps should only be done once!
 - [ ] Then `cd <folder name>`.
 
 ## What do I need to do to Run
+- [ ] run `npm i` to install all dependencies.
 - [ ] run `npm run build` to build the application for production.
 - [ ] run `npm start` on your terminal under the `rookie-cookie` Directory.
 - [ ] then go to `http://localhost:3000/` to start playing around with application.
